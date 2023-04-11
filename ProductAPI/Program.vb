@@ -21,7 +21,7 @@ Module Program
                                                               End Sub)
                                  End Sub)
 
-        builder.WebHost.UseUrls("http://localhost:5000")
+        builder.WebHost.UseUrls("https://localhost:5000")
 
         Dim app = builder.Build()
 
