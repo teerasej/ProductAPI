@@ -1,6 +1,6 @@
 ﻿Imports System
 Imports Microsoft.AspNetCore.Builder
-Imports Microsoft.AspNetCore.Cors.Infrastructure
+Imports Microsoft.AspNetCore.Hosting
 Imports Microsoft.Extensions.DependencyInjection
 
 Module Program
@@ -12,7 +12,7 @@ Module Program
         builder.Services.AddEndpointsApiExplorer()
         builder.Services.AddSwaggerGen()
 
-        ' เพิิ่มการทำงานของ Cors ที่อนุญาตให้ client สามารถส่ง request มาได้
+
         builder.Services.AddCors(Sub(options)
                                      options.AddDefaultPolicy(Sub(corsBuilder)
                                                                   corsBuilder.AllowAnyOrigin() _
@@ -21,12 +21,14 @@ Module Program
                                                               End Sub)
                                  End Sub)
 
+        builder.WebHost.UseUrls("http://localhost:5000")
+
         Dim app = builder.Build()
 
         app.UseSwagger()
         app.UseSwaggerUI()
 
-        ' เปิดการทำงานของ CORS ใน App
+
         app.UseCors()
 
 
