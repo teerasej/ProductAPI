@@ -7,7 +7,7 @@ The ASP.NET Core developer certificate is in an invalid state. To fix this issue
 
 ```bash
 dotnet dev-certs https --clean
-dotnet dev-certs https'
+dotnet dev-certs https
 ```
 
 to remove all existing ASP.NET Core development certificates and create a new untrusted developer certificate. 
