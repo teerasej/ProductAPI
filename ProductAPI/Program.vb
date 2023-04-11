@@ -21,7 +21,12 @@ Module Program
                                                               End Sub)
                                  End Sub)
 
-        builder.WebHost.UseUrls("https://localhost")
+        Dim port As String = Environment.GetEnvironmentVariable("PORT")
+        If String.IsNullOrEmpty(port) Then
+            port = "5000"
+        End If
+
+        builder.WebHost.UseUrls("https://localhost:" + port)
 
         Dim app = builder.Build()
 
