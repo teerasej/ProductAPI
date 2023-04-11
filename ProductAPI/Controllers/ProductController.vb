@@ -1,6 +1,7 @@
 ﻿
 Imports Microsoft.AspNetCore.Mvc
 Imports Microsoft.Data.SqlClient
+Imports Microsoft.Extensions.Logging
 
 Public Class Product
     Public Property Id As Integer
@@ -10,7 +11,7 @@ Public Class Product
 End Class
 
 Public Class ProductUpdateModel
-    Public Property id As String
+    Public Property id As Integer
     Public Property addStock As Integer
 End Class
 
@@ -21,7 +22,14 @@ Public Class ProductController
     Inherits ControllerBase
 
 
+
     Dim connectionString As String = "Server=tcp:mkctoolslab.database.windows.net,1433;Initial Catalog=productDB;Persist Security Info=False;User ID=myadmin;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+
+    Private ReadOnly _logger As ILogger(Of ProductController)
+
+    Public Sub New(ByVal logger As ILogger(Of ProductController))
+         _logger = logger
+    End Sub
 
 
     <HttpGet("all")>
@@ -96,6 +104,11 @@ Public Class ProductController
 
     <HttpPatch("update-stock")>
     Public Function UpdateProductStock(<FromBody> model As ProductUpdateModel) As Boolean
+        
+        _logger.LogInformation("Start updating product's stock")
+        _logger.LogInformation("Product Id: " + model.id.toString())
+        _logger.LogInformation("Adding : " + model.addStock.toString())
+        
         Dim result As Boolean = False
 
         Using connection As New SqlConnection(connectionString)
