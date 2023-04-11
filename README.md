@@ -1,19 +1,23 @@
-# ProductAPI รายละเอียดการใช้งาน
+# ProductAPI 
 
-Web API นี้ มี 3 Route url 
 
-## Route List
+## SSL Certificate on target machine 
 
-### 1. Get All Product
+The ASP.NET Core developer certificate is in an invalid state. To fix this issue, run 
 
-Query all products in **database**, and return as JSON array
-
-```json
-{
-    "id":"1",
-    "addStock":10
-}
+```bash
+dotnet dev-certs https --clean
+dotnet dev-certs https'
 ```
 
-- id: เลขไอดีของสินค้า
-- addStock: จำนวนสิ้นค้าที่จะเพิ่มเข้า stock
+to remove all existing ASP.NET Core development certificates and create a new untrusted developer certificate. 
+
+## trust Certificate
+
+On macOS or Windows, to trust the new certificate, run following code:
+
+```
+dotnet dev-certs https --trust
+```
+
+
