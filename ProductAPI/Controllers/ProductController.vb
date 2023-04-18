@@ -23,7 +23,7 @@ Public Class ProductController
 
 
 
-    Dim connectionString As String = "Server=tcp:mkctoolslab.database.windows.net,1433;Initial Catalog=productDB;Persist Security Info=False;User ID=myadmin;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    Dim connectionString As String = "Server=tcp:productapi.database.windows.net,1433;Initial Catalog=productDB;Persist Security Info=False;User ID=myadmin;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
     Private ReadOnly _logger As ILogger(Of ProductController)
 
